@@ -9,13 +9,11 @@ const hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
 (() => {
   const target = 'localhost:50051';
   let client = new hello_proto.Greeter(target, grpc.credentials.createInsecure());
-  let user = 'johan', country = 'sweden';
-  let [variable1 , variable2, variable3] = ["Hello, World!", "Testing...", 42];
-  console.log(variable2);
-  client.sayHello({name: user, country: country}, function(err, response) {
+  let user = 'johan', country = 'sweden', date = Date.now();
+  client.sayHello({name: user, country: country}, (err, response) => {
     console.log('Greeting:', response.message);
   });
-  client.sayGoodbye({name: user, country: country, date: Date.now()}, function(err, response) {
+  client.sayGoodbye({name: user, country: country, date: date}, (err, response) => {
     console.log('Greeting:', response.message);
   });
 })();

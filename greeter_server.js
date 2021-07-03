@@ -17,9 +17,10 @@ const sayGoodbye = (call, callback) => {
 }
 
 (() => {
-  var server = new grpc.Server();
+  const addr = '0.0.0.0:50051';
+  let server = new grpc.Server();
   server.addService(hello_proto.Greeter.service, {sayHello: sayHello, sayGoodbye: sayGoodbye});
-  server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
+  server.bindAsync(addr, grpc.ServerCredentials.createInsecure(), () => {
     server.start();
   });
 })();
