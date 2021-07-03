@@ -1,9 +1,9 @@
-var PROTO_PATH = 'helloworld.proto';
-
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
-const settings = {keepCase: true, longs: String, enums: String, defaults: true, oneofs: true};
-const packageDefinition = protoLoader.loadSync(PROTO_PATH, settings);
+
+const PROTO_PATH = 'helloworld.proto';
+const SETTINGS = {keepCase: true, longs: String, enums: String, defaults: true, oneofs: true};
+const packageDefinition = protoLoader.loadSync(PROTO_PATH, SETTINGS);
 const hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
 
 (() => {
